@@ -18,8 +18,8 @@ Bleacon.on('discover', function(bleacon) {
     if(Object.keys(congestions).length == 0) {
         setTimeout(function(){
             congestions = {};
-        }, 120000);
-        //}, 5000);
+        //}, 120000);
+        }, 5000);
     }
     if(congestions[bleacon.major]) {
         return;
