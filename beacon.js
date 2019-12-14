@@ -28,9 +28,9 @@ Bleacon.on('discover', function(bleacon) {
         congestions[bleacon.major] = bleacon.minor;
     }
 
-    var train_id = Number(bleacon.major.slice(0,3));
-    var car_id = Number(bleacon.major.slice(-2));
-    var door_id = Number(bleacon.major.slice(-1));
+    var train_id = Number(String(bleacon.major).slice(0,3));
+    var car_id = Number(String(bleacon.major).slice(-2));
+    var door_id = Number(String(bleacon.major).slice(-1));
 
     var dt = new Date();
     var formatted_date = dt.toFormat("YYYY/MM/DD/HH24/MI/SS");
