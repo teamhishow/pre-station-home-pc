@@ -1,3 +1,4 @@
+require('date-utils');
 const request = require('request');
 const fs = require('fs');
 const Bleacon = require('bleacon');
@@ -26,12 +27,14 @@ Bleacon.on('discover', function(bleacon) {
     } else {
         congestions[bleacon.major] = bleacon.minor;
     }
+    var dt = new Date();
+    var formatted_date = dt.toFormat("YYYY/MM/DD/HH24/MI/SS");
     request.post({
         url: "http://" + http_address,
         headers: {
             "content-type": "application/json"
         },
-        body: JSON.stringify({door_id: bleacon.major, congestion: bleacon.minor})
+        body: JSON.stringify({door_id: bleacon.major, congestion: bleacon.minor, time: formatted_date})
     }, function (error, response, body){
         console.log(body);
     });
