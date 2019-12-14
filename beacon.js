@@ -9,18 +9,21 @@ const measuredPower = -59;
 
 let http_address = fs.readFileSync("/tmp/hishow/http/next-station", 'utf-8');
 http_address = http_address.replace(/\r?\n/g, '');
+console.log(http_address)
 
 Bleacon.startScanning(uuid);
 
 Bleacon.on('discover', function(bleacon) {
-    var options = {
-        url: http_address,
-        method: "post",
-        form: {"name":"太郎"}
-    }
-    request(options, function (error, response, body) {
+    console.log(bleacon)
+    request.post({
+        url: "http://" + http_address,
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({door_id: bleacon.major, conjestion: bleacon.minor})
+    }, function (error, response, body){
         console.log(body);
-    })
+    });
 
 });
 
