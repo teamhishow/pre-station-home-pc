@@ -29,7 +29,7 @@ Bleacon.on('discover', function(bleacon) {
     }
 
     var train_id = Number(String(bleacon.major).slice(0,3));
-    var car_id = Number(String(bleacon.major).slice(-2));
+    var car_id = Number(String(bleacon.major).slice(-2, -1));
     var door_id = Number(String(bleacon.major).slice(-1));
 
     var dt = new Date();
