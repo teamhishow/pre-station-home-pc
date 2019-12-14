@@ -10,28 +10,28 @@ console.log(http_address)
 
 Bleacon.startScanning(uuid);
 
-var conjestions = [];
+var congestions = [];
 
 var refresh_interval;
 
 Bleacon.on('discover', function(bleacon) {
-    if(Object.keys(conjestions).length == 0) {
+    if(Object.keys(congestions).length == 0) {
         setTimeout(function(){
-            conjestions = {};
+            congestions = {};
         }, 120000);
         //}, 5000);
     }
-    if(conjestions[bleacon.major]) {
+    if(congestions[bleacon.major]) {
         return;
     } else {
-        conjestions[bleacon.major] = bleacon.minor;
+        congestions[bleacon.major] = bleacon.minor;
     }
     request.post({
         url: "http://" + http_address,
         headers: {
             "content-type": "application/json"
         },
-        body: JSON.stringify({door_id: bleacon.major, conjestion: bleacon.minor})
+        body: JSON.stringify({door_id: bleacon.major, congestion: bleacon.minor})
     }, function (error, response, body){
         console.log(body);
     });
