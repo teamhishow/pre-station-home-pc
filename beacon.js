@@ -3,9 +3,6 @@ const fs = require('fs');
 const Bleacon = require('bleacon');
 
 const uuid = 'aaaaaaaabbbbccccddddeeeeeeeeeeee';
-const major = 12;
-const minor = 34;
-const measuredPower = -59;
 
 let http_address = fs.readFileSync("/tmp/hishow/http/next-station", 'utf-8');
 http_address = http_address.replace(/\r?\n/g, '');
@@ -13,8 +10,22 @@ console.log(http_address)
 
 Bleacon.startScanning(uuid);
 
+var conjestions = [];
+
+var refresh_interval;
+
 Bleacon.on('discover', function(bleacon) {
-    console.log(bleacon)
+    if(Object.keys(conjestions).length == 0) {
+        setTimeout(function(){
+            conjestions = {};
+        }, 120000);
+        //}, 5000);
+    }
+    if(conjestions[bleacon.major]) {
+        return;
+    } else {
+        conjestions[bleacon.major] = bleacon.minor;
+    }
     request.post({
         url: "http://" + http_address,
         headers: {
@@ -26,6 +37,4 @@ Bleacon.on('discover', function(bleacon) {
     });
 
 });
-
-Bleacon.startAdvertising(uuid, major, minor, measuredPower);
 
