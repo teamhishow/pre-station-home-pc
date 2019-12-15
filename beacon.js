@@ -50,7 +50,7 @@ Bleacon.on('discover', function(bleacon) {
             time: formatted_date
         })
     }, function (error, response, body){
-        console.log(body);
+        //console.log(body);
     });
 
 });
