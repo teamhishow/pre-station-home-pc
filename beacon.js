@@ -33,7 +33,7 @@ Bleacon.on('discover', function(bleacon) {
     var door_id = Number(String(bleacon.major).slice(-1));
 
     var dt = new Date();
-    var formatted_date = dt.toFormat("YYYY/MM/DD/HH24/MI/SS");
+    var formatted_date = dt.toFormat("YYYY/MM/DD/HH24:MI:SS");
     request.post({
         url: "http://" + http_address,
         headers: {
