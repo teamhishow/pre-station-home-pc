@@ -32,6 +32,8 @@ Bleacon.on('discover', function(bleacon) {
     var car_id = Number(String(bleacon.major).slice(-2, -1));
     var door_id = Number(String(bleacon.major).slice(-1));
 
+    console.log("列車:" + train_id, ", 車両:" + car_id + ", ドア番号:" + door_id + " の混雑度 " + bleacon.minor + " をクラウドに送信");
+
     var dt = new Date();
     var formatted_date = dt.toFormat("YYYY/MM/DD/HH24:MI:SS");
     request.post({
