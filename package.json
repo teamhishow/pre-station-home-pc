@@ -4,7 +4,7 @@
   "description": "",
   "main": "beacon.js",
   "dependencies": {
-    "aws-sdk": "^2.590.0",
+    "aws-sdk": "^2.814.0",
     "bleacon": "^0.5.1",
     "date-utils": "^1.2.21",
     "noble-mac": "https://github.com/Timeular/noble-mac.git",
